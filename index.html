@@ -3,90 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMZ Studios | Hub de Projetos</title>
+    <title>AMZ Workspace | System</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #ededed; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Efeito de brilho nas bordas */
+        .glow-border { border: 1px solid #1f1f1f; transition: 0.3s; }
+        .glow-border:hover { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); }
+        
+        /* Scrollbar customizada */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1f1f1f; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
     </style>
 </head>
-<body class="bg-[#0b1120] text-slate-200 min-h-screen">
+<body class="flex h-screen overflow-hidden">
 
-    <nav class="sticky top-0 z-50 glass px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center font-black text-white">A</div>
-            <span class="text-xl font-bold tracking-tighter text-white">AMZ <span class="text-sky-500">STUDIOS</span></span>
+    <aside class="w-64 bg-[#0a0a0a] border-r border-[#1a1a1a] flex flex-col justify-between hidden md:flex z-10">
+        <div>
+            <div class="h-16 flex items-center px-6 border-b border-[#1a1a1a]">
+                <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center font-bold text-white mr-3 shadow-[0_0_10px_rgba(37,99,235,0.4)]">A</div>
+                <span class="font-bold tracking-wide">AMZ_STUDIOS</span>
+            </div>
+
+            <nav class="p-4 space-y-1 mt-4">
+                <p class="px-3 text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider">Workspace</p>
+                
+                <a href="#" class="flex items-center gap-3 px-3 py-2 bg-[#1a1a1a] text-blue-400 rounded-md transition">
+                    <i class="ph ph-squares-four text-xl"></i>
+                    <span class="font-medium text-sm">Dashboard</span>
+                </a>
+                
+                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-gray-100 hover:bg-[#111] rounded-md transition">
+                    <i class="ph ph-game-controller text-xl"></i>
+                    <span class="font-medium text-sm">Roblox Macros</span>
+                </a>
+
+                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-gray-100 hover:bg-[#111] rounded-md transition">
+                    <i class="ph ph-robot text-xl"></i>
+                    <span class="font-medium text-sm">Discord Bots</span>
+                </a>
+
+                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-gray-100 hover:bg-[#111] rounded-md transition">
+                    <i class="ph ph-terminal-window text-xl"></i>
+                    <span class="font-medium text-sm">Tools & Scripts</span>
+                </a>
+            </nav>
         </div>
-        <div class="hidden md:flex gap-8 text-sm font-medium">
-            <a href="#inicio" class="hover:text-sky-400 transition">Início</a>
-            <a href="#projetos" class="hover:text-sky-400 transition">Projetos</a>
-            <a href="#downloads" class="hover:text-sky-400 transition">Downloads</a>
+
+        <div class="p-4 border-t border-[#1a1a1a]">
+            <div class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[#111] transition cursor-pointer">
+                <img src="https://github.com/Muniz-Amz.png" alt="Muniz" class="w-8 h-8 rounded-full border border-[#333]">
+                <div>
+                    <p class="text-sm font-medium text-white">Muniz-Amz</p>
+                    <p class="text-xs text-emerald-400 flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Online
+                    </p>
+                </div>
+            </div>
         </div>
-        <a href="https://discord.com" class="bg-sky-600 hover:bg-sky-500 text-white px-5 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-sky-900/20">
-            Discord
-        </a>
-    </nav>
+    </aside>
 
-    <header id="inicio" class="relative py-24 px-6 text-center overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-sky-500/10 blur-[120px] rounded-full -z-10"></div>
-        <h1 class="text-6xl md:text-7xl font-black text-white tracking-tight mb-6">
-            Construindo o <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">Futuro</span> da Automação.
-        </h1>
-        <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
-            Desenvolvimento de scripts de alta precisão para Roblox, bots inteligentes para Discord e automações customizadas para o seu servidor.
-        </p>
-    </header>
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto bg-[#050505]">
+        
+        <header class="h-16 border-b border-[#1a1a1a] flex items-center justify-between px-8 bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-10">
+            <h1 class="text-lg font-semibold text-gray-200">Visão Geral do Sistema</h1>
+            <div class="flex items-center gap-4">
+                <button class="text-gray-400 hover:text-white transition"><i class="ph ph-bell text-xl"></i></button>
+                <button class="text-gray-400 hover:text-white transition"><i class="ph ph-gear text-xl"></i></button>
+            </div>
+        </header>
 
-    <section id="projetos" class="max-w-6xl mx-auto px-6 pb-24">
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-8 max-w-7xl mx-auto w-full">
             
-            <div class="glass p-8 rounded-3xl hover:border-sky-500/50 transition-all group">
-                <div class="w-12 h-12 bg-sky-500/20 rounded-2xl flex items-center justify-center mb-6 text-sky-400 group-hover:scale-110 transition">
-                    🎮
+            <div class="bg-gradient-to-r from-blue-900/20 to-transparent border border-blue-900/50 rounded-lg p-6 mb-8 flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-1">Bem-vindo ao AMZ Hub</h2>
+                    <p class="text-gray-400 text-sm">Seu ambiente de trabalho e automação está pronto para uso.</p>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-3">Roblox Macros</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    Scripts otimizados para eventos de PvP e farm automático. Alta precisão e segurança.
-                </p>
-                <a href="/meu-site-downloads" class="text-sky-400 font-bold text-sm hover:underline flex items-center gap-2">
-                    Ver Scripts <span>→</span>
-                </a>
+                <div class="hidden sm:block">
+                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 font-mono text-xs rounded border border-emerald-500/20">
+                        SYS.STATUS: OPERATIONAL
+                    </span>
+                </div>
             </div>
 
-            <div class="glass p-8 rounded-3xl hover:border-sky-500/50 transition-all group">
-                <div class="w-12 h-12 bg-sky-500/20 rounded-2xl flex items-center justify-center mb-6 text-sky-400 group-hover:scale-110 transition">
-                    🤖
+            <h3 class="text-sm font-mono text-gray-500 mb-4 uppercase tracking-wider">Módulos Ativos</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                
+                <div class="glow-border bg-[#0a0a0a] rounded-lg p-5 flex flex-col h-full relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-blue-500/10 blur-2xl rounded-full"></div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 rounded bg-[#111] flex items-center justify-center text-blue-400 border border-[#222]">
+                            <i class="ph ph-mouse-left text-xl"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">v1.2.0</span>
+                    </div>
+                    <h4 class="text-white font-bold mb-1">Amz Clicker</h4>
+                    <p class="text-xs text-gray-400 mb-6 flex-1">Macro de alta precisão para Roblox. Farm otimizado.</p>
+                    <a href="./meu-site-downloads/Amz Clicker.exe" download class="w-full bg-[#111] hover:bg-blue-600 hover:text-white text-gray-300 font-medium py-2 rounded text-sm transition text-center border border-[#222] hover:border-blue-500">
+                        Baixar Executável
+                    </a>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-3">Discord Bots</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    Sistemas complexos com Python e Flask. Hospedados 24/7 com monitoramento em tempo real.
-                </p>
-                <a href="#" class="text-sky-400 font-bold text-sm hover:underline flex items-center gap-2">
-                    Conhecer Bots <span>→</span>
-                </a>
+
+                <div class="glow-border bg-[#0a0a0a] rounded-lg p-5 flex flex-col h-full">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 rounded bg-[#111] flex items-center justify-center text-purple-400 border border-[#222]">
+                            <i class="ph ph-discord-logo text-xl"></i>
+                        </div>
+                        <span class="flex h-2 w-2 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                    </div>
+                    <h4 class="text-white font-bold mb-1">Bot Controller</h4>
+                    <p class="text-xs text-gray-400 mb-6 flex-1">Gerencie seu bot hospedado no Render.</p>
+                    <button class="w-full bg-[#111] hover:bg-[#222] text-white font-medium py-2 rounded text-sm transition border border-[#222]">
+                        Acessar Painel
+                    </button>
+                </div>
+
+                <div class="glow-border bg-[#0a0a0a] border-dashed border-[#222] rounded-lg p-5 flex flex-col items-center justify-center h-full text-center cursor-pointer hover:bg-[#0c0c0c] transition">
+                    <div class="w-12 h-12 rounded-full bg-[#111] flex items-center justify-center text-gray-500 mb-3 border border-[#222]">
+                        <i class="ph ph-plus text-xl"></i>
+                    </div>
+                    <h4 class="text-gray-300 font-bold mb-1">Nova Ferramenta</h4>
+                    <p class="text-xs text-gray-500">Adicionar script Python ou URL.</p>
+                </div>
+
             </div>
 
-            <div class="glass p-8 rounded-3xl hover:border-sky-500/50 transition-all group">
-                <div class="w-12 h-12 bg-sky-500/20 rounded-2xl flex items-center justify-center mb-6 text-sky-400 group-hover:scale-110 transition">
-                    ⚡
+            <h3 class="text-sm font-mono text-gray-500 mb-4 uppercase tracking-wider">System Logs</h3>
+            <div class="bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg p-4 font-mono text-xs text-gray-400 h-48 overflow-y-auto">
+                <p><span class="text-blue-500">root@amz-studios:~$</span> system_check --all</p>
+                <p class="mt-1">[OK] Servidor GitHub Pages inicializado.</p>
+                <p>[OK] Banco de dados de scripts carregado.</p>
+                <p class="text-yellow-500">[WARN] Render app "celestial-bot" está ocioso. Ping enviado.</p>
+                <p class="mt-2 text-emerald-500">Aguardando novos comandos de Muniz-Amz...</p>
+                <div class="mt-2 flex items-center">
+                    <span class="text-blue-500">root@amz-studios:~$</span> <span class="ml-2 w-2 h-4 bg-gray-400 animate-pulse"></span>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-3">Ferramentas Py</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    Conversores de mídia, sistemas de avaliação e utilitários para facilitar seu dia a dia.
-                </p>
-                <span class="text-slate-600 font-bold text-sm">Em breve</span>
             </div>
 
         </div>
-    </section>
-
-    <footer class="border-t border-slate-800 py-12 px-6 text-center">
-        <p class="text-sm text-slate-500">
-            &copy; 2026 <span class="text-slate-300 font-bold">AMZ Studios</span>. 
-            Desenvolvido por Muniz-Amz.
-        </p>
-    </footer>
+    </main>
 
 </body>
 </html>
