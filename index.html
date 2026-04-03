@@ -3,155 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMZ Workspace | System</title>
+    <title>AMZ Studios | System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #ededed; }
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #000000; color: #ffffff; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* Efeito de brilho nas bordas */
-        .glow-border { border: 1px solid #1f1f1f; transition: 0.3s; }
-        .glow-border:hover { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); }
+        /* Estilo B&W minimalista */
+        .bw-border { border: 1px solid #262626; transition: all 0.3s ease; }
+        .bw-border:hover { border-color: #ffffff; }
         
-        /* Scrollbar customizada */
+        /* Scrollbar B&W */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #1f1f1f; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #fff; }
+
+        /* Esconder abas inativas */
+        .hidden { display: none !important; }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden">
 
-    <aside class="w-64 bg-[#0a0a0a] border-r border-[#1a1a1a] flex flex-col justify-between hidden md:flex z-10">
+    <aside class="w-64 bg-[#050505] border-r border-[#262626] flex flex-col justify-between hidden md:flex z-10">
         <div>
-            <div class="h-16 flex items-center px-6 border-b border-[#1a1a1a]">
-                <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center font-bold text-white mr-3 shadow-[0_0_10px_rgba(37,99,235,0.4)]">A</div>
-                <span class="font-bold tracking-wide">AMZ_STUDIOS</span>
+            <div class="h-16 flex items-center px-6 border-b border-[#262626]">
+                <div class="w-8 h-8 bg-white text-black flex items-center justify-center font-bold text-lg mr-3">A</div>
+                <span class="font-bold tracking-widest uppercase text-sm">Amz Studios</span>
             </div>
 
-            <nav class="p-4 space-y-1 mt-4">
-                <p class="px-3 text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider">Workspace</p>
+            <nav class="p-4 space-y-2 mt-4">
+                <p class="px-3 text-[10px] font-mono text-neutral-500 mb-2 uppercase tracking-[0.2em]">Navegação</p>
                 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 bg-[#1a1a1a] text-blue-400 rounded-md transition">
+                <button id="btn-tab-home" onclick="openTab('tab-home')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 bg-white text-black font-semibold rounded-sm transition">
                     <i class="ph ph-squares-four text-xl"></i>
-                    <span class="font-medium text-sm">Dashboard</span>
-                </a>
+                    <span class="text-sm uppercase tracking-wider">Início</span>
+                </button>
                 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-gray-100 hover:bg-[#111] rounded-md transition">
-                    <i class="ph ph-game-controller text-xl"></i>
-                    <span class="font-medium text-sm">Roblox Macros</span>
-                </a>
+                <button id="btn-tab-apps" onclick="openTab('tab-apps')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 text-neutral-400 hover:bg-[#111] hover:text-white rounded-sm transition font-semibold">
+                    <i class="ph ph-download-simple text-xl"></i>
+                    <span class="text-sm uppercase tracking-wider">Meus Apps</span>
+                </button>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-gray-100 hover:bg-[#111] rounded-md transition">
+                <button id="btn-tab-bot" onclick="openTab('tab-bot')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 text-neutral-400 hover:bg-[#111] hover:text-white rounded-sm transition font-semibold">
                     <i class="ph ph-robot text-xl"></i>
-                    <span class="font-medium text-sm">Discord Bots</span>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-gray-100 hover:bg-[#111] rounded-md transition">
-                    <i class="ph ph-terminal-window text-xl"></i>
-                    <span class="font-medium text-sm">Tools & Scripts</span>
-                </a>
+                    <span class="text-sm uppercase tracking-wider">Bot Dashboard</span>
+                </button>
             </nav>
         </div>
 
-        <div class="p-4 border-t border-[#1a1a1a]">
-            <div class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[#111] transition cursor-pointer">
-                <img src="https://github.com/Muniz-Amz.png" alt="Muniz" class="w-8 h-8 rounded-full border border-[#333]">
+        <div class="p-4 border-t border-[#262626]">
+            <div class="flex items-center gap-3 px-3 py-2">
+                <img src="https://github.com/Muniz-Amz.png" alt="Muniz" class="w-10 h-10 rounded-sm bw-border grayscale">
                 <div>
-                    <p class="text-sm font-medium text-white">Muniz-Amz</p>
-                    <p class="text-xs text-emerald-400 flex items-center gap-1">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Online
+                    <p class="text-sm font-bold uppercase">Muniz-Amz</p>
+                    <p class="text-xs font-mono text-neutral-500 flex items-center gap-2 mt-1">
+                        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> Root
                     </p>
                 </div>
             </div>
         </div>
     </aside>
 
-    <main class="flex-1 flex flex-col h-screen overflow-y-auto bg-[#050505]">
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto bg-[#000000]">
         
-        <header class="h-16 border-b border-[#1a1a1a] flex items-center justify-between px-8 bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-10">
-            <h1 class="text-lg font-semibold text-gray-200">Visão Geral do Sistema</h1>
-            <div class="flex items-center gap-4">
-                <button class="text-gray-400 hover:text-white transition"><i class="ph ph-bell text-xl"></i></button>
-                <button class="text-gray-400 hover:text-white transition"><i class="ph ph-gear text-xl"></i></button>
-            </div>
+        <header class="h-16 border-b border-[#262626] flex items-center justify-between px-8 bg-[#000000]/90 backdrop-blur-md sticky top-0 z-10">
+            <h1 class="text-sm font-mono text-neutral-400 tracking-widest uppercase" id="header-title">System // Overview</h1>
+            <a href="https://github.com/Muniz-Amz" target="_blank" class="text-neutral-400 hover:text-white transition">
+                <i class="ph ph-github-logo text-2xl"></i>
+            </a>
         </header>
 
-        <div class="p-8 max-w-7xl mx-auto w-full">
-            
-            <div class="bg-gradient-to-r from-blue-900/20 to-transparent border border-blue-900/50 rounded-lg p-6 mb-8 flex justify-between items-center">
-                <div>
-                    <h2 class="text-2xl font-bold text-white mb-1">Bem-vindo ao AMZ Hub</h2>
-                    <p class="text-gray-400 text-sm">Seu ambiente de trabalho e automação está pronto para uso.</p>
-                </div>
-                <div class="hidden sm:block">
-                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 font-mono text-xs rounded border border-emerald-500/20">
-                        SYS.STATUS: OPERATIONAL
-                    </span>
+        <div class="p-8 max-w-6xl mx-auto w-full">
+
+            <div id="tab-home" class="tab-content">
+                <h2 class="text-4xl font-bold mb-2 uppercase tracking-tighter">Workspace.</h2>
+                <p class="text-neutral-500 mb-10 text-sm tracking-wide">Seu hub central de automação e gerenciamento.</p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bw-border p-8 rounded-sm bg-[#050505]">
+                        <i class="ph ph-terminal-window text-4xl mb-4 text-white"></i>
+                        <h3 class="text-xl font-bold mb-2 uppercase">Status do Sistema</h3>
+                        <p class="text-neutral-400 text-sm mb-6">Todos os serviços estão operacionais. O servidor web e o banco de dados estão sincronizados.</p>
+                        <div class="font-mono text-xs text-neutral-500 space-y-2 bg-black p-4 border border-[#262626]">
+                            <p>> git status: up to date</p>
+                            <p>> build: passing</p>
+                            <p class="text-white">> connection: secure</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <h3 class="text-sm font-mono text-gray-500 mb-4 uppercase tracking-wider">Módulos Ativos</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                
-                <div class="glow-border bg-[#0a0a0a] rounded-lg p-5 flex flex-col h-full relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-16 h-16 bg-blue-500/10 blur-2xl rounded-full"></div>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-10 h-10 rounded bg-[#111] flex items-center justify-center text-blue-400 border border-[#222]">
-                            <i class="ph ph-mouse-left text-xl"></i>
+            <div id="tab-apps" class="tab-content hidden">
+                <h2 class="text-4xl font-bold mb-2 uppercase tracking-tighter">Meus Apps.</h2>
+                <p class="text-neutral-500 mb-10 text-sm tracking-wide">Ferramentas e executáveis desenvolvidos pela AMZ Studios.</p>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bw-border p-6 rounded-sm bg-[#050505] flex flex-col h-full group">
+                        <div class="w-12 h-12 bg-white text-black flex items-center justify-center rounded-sm mb-6">
+                            <i class="ph ph-mouse-left text-2xl"></i>
                         </div>
-                        <span class="text-xs font-mono text-gray-500">v1.2.0</span>
+                        <h3 class="text-lg font-bold mb-1 uppercase">Amz Clicker</h3>
+                        <p class="text-neutral-500 text-sm mb-2 font-mono">v1.0 - Executável Windows</p>
+                        <p class="text-neutral-400 text-sm mb-8 flex-1">Macro de alta precisão focado em otimização de farm para Roblox.</p>
+                        
+                        <a href="./meu-site-downloads/Amz Clicker.exe" download class="w-full bg-transparent border border-[#262626] group-hover:bg-white group-hover:text-black text-white py-3 font-bold text-xs uppercase tracking-[0.2em] transition text-center flex items-center justify-center gap-2">
+                            <i class="ph ph-download-simple text-lg"></i> Download
+                        </a>
                     </div>
-                    <h4 class="text-white font-bold mb-1">Amz Clicker</h4>
-                    <p class="text-xs text-gray-400 mb-6 flex-1">Macro de alta precisão para Roblox. Farm otimizado.</p>
-                    <a href="./meu-site-downloads/Amz Clicker.exe" download class="w-full bg-[#111] hover:bg-blue-600 hover:text-white text-gray-300 font-medium py-2 rounded text-sm transition text-center border border-[#222] hover:border-blue-500">
-                        Baixar Executável
-                    </a>
-                </div>
 
-                <div class="glow-border bg-[#0a0a0a] rounded-lg p-5 flex flex-col h-full">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-10 h-10 rounded bg-[#111] flex items-center justify-center text-purple-400 border border-[#222]">
-                            <i class="ph ph-discord-logo text-xl"></i>
-                        </div>
-                        <span class="flex h-2 w-2 relative">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
+                    <div class="bw-border border-dashed p-6 rounded-sm bg-transparent flex flex-col items-center justify-center text-center h-full opacity-50 cursor-not-allowed">
+                        <i class="ph ph-code text-3xl mb-4 text-neutral-600"></i>
+                        <h3 class="text-sm font-bold uppercase text-neutral-500">Ferramentas Py</h3>
+                        <p class="text-neutral-600 text-xs mt-2 uppercase tracking-widest">Em Breve</p>
                     </div>
-                    <h4 class="text-white font-bold mb-1">Bot Controller</h4>
-                    <p class="text-xs text-gray-400 mb-6 flex-1">Gerencie seu bot hospedado no Render.</p>
-                    <button class="w-full bg-[#111] hover:bg-[#222] text-white font-medium py-2 rounded text-sm transition border border-[#222]">
-                        Acessar Painel
-                    </button>
                 </div>
-
-                <div class="glow-border bg-[#0a0a0a] border-dashed border-[#222] rounded-lg p-5 flex flex-col items-center justify-center h-full text-center cursor-pointer hover:bg-[#0c0c0c] transition">
-                    <div class="w-12 h-12 rounded-full bg-[#111] flex items-center justify-center text-gray-500 mb-3 border border-[#222]">
-                        <i class="ph ph-plus text-xl"></i>
-                    </div>
-                    <h4 class="text-gray-300 font-bold mb-1">Nova Ferramenta</h4>
-                    <p class="text-xs text-gray-500">Adicionar script Python ou URL.</p>
-                </div>
-
             </div>
 
-            <h3 class="text-sm font-mono text-gray-500 mb-4 uppercase tracking-wider">System Logs</h3>
-            <div class="bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg p-4 font-mono text-xs text-gray-400 h-48 overflow-y-auto">
-                <p><span class="text-blue-500">root@amz-studios:~$</span> system_check --all</p>
-                <p class="mt-1">[OK] Servidor GitHub Pages inicializado.</p>
-                <p>[OK] Banco de dados de scripts carregado.</p>
-                <p class="text-yellow-500">[WARN] Render app "celestial-bot" está ocioso. Ping enviado.</p>
-                <p class="mt-2 text-emerald-500">Aguardando novos comandos de Muniz-Amz...</p>
-                <div class="mt-2 flex items-center">
-                    <span class="text-blue-500">root@amz-studios:~$</span> <span class="ml-2 w-2 h-4 bg-gray-400 animate-pulse"></span>
+            <div id="tab-bot" class="tab-content hidden">
+                <div class="flex justify-between items-end mb-10">
+                    <div>
+                        <h2 class="text-4xl font-bold mb-2 uppercase tracking-tighter">Bot Dashboard.</h2>
+                        <p class="text-neutral-500 text-sm tracking-wide">Painel de controle do seu Bot do Discord via Render.</p>
+                    </div>
+                    <div class="font-mono text-xs border border-[#262626] px-4 py-2 bg-[#050505] flex items-center gap-2">
+                        <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> ONLINE
+                    </div>
                 </div>
+
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    <div class="bw-border p-6 bg-[#050505]">
+                        <p class="text-neutral-500 font-mono text-[10px] uppercase tracking-widest mb-1">Servidores</p>
+                        <p class="text-3xl font-bold">14</p>
+                    </div>
+                    <div class="bw-border p-6 bg-[#050505]">
+                        <p class="text-neutral-500 font-mono text-[10px] uppercase tracking-widest mb-1">Ping</p>
+                        <p class="text-3xl font-bold">42<span class="text-sm text-neutral-500 ml-1">ms</span></p>
+                    </div>
+                    <div class="bw-border p-6 bg-[#050505]">
+                        <p class="text-neutral-500 font-mono text-[10px] uppercase tracking-widest mb-1">Uptime</p>
+                        <p class="text-3xl font-bold">99.8<span class="text-sm text-neutral-500 ml-1">%</span></p>
+                    </div>
+                </div>
+
+                <div class="bw-border bg-[#050505] p-8">
+                    <h3 class="text-lg font-bold mb-6 uppercase border-b border-[#262626] pb-4">Módulos Ativos</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-bold text-sm uppercase">Sistema de Moderação</p>
+                                <p class="text-neutral-500 text-xs mt-1">Kick, Ban e avisos automáticos ligados.</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-[#262626] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-400 peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-white"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between border-t border-[#111] pt-6">
+                            <div>
+                                <p class="font-bold text-sm uppercase">Auto-Role (Cargos Automáticos)</p>
+                                <p class="text-neutral-500 text-xs mt-1">Atribui cargos assim que o usuário entra no servidor.</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-[#262626] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-400 peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-white"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between border-t border-[#111] pt-6">
+                            <div>
+                                <p class="font-bold text-sm uppercase">Logs de Mensagens</p>
+                                <p class="text-neutral-500 text-xs mt-1">Registra mensagens apagadas e editadas.</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer">
+                                <div class="w-11 h-6 bg-[#262626] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-400 peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-white"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
     </main>
 
+    <script>
+        function openTab(tabName) {
+            // 1. Esconde todo o conteúdo de todas as abas
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // 2. Mostra a aba que foi clicada
+            document.getElementById(tabName).classList.remove('hidden');
+
+            // 3. Reseta o estilo de todos os botões no menu (deixa cinza)
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-white', 'text-black');
+                btn.classList.add('text-neutral-400', 'hover:bg-[#111]', 'hover:text-white');
+            });
+
+            // 4. Destaca o botão que foi clicado (deixa branco com texto preto)
+            const activeBtn = document.getElementById('btn-' + tabName);
+            activeBtn.classList.remove('text-neutral-400', 'hover:bg-[#111]', 'hover:text-white');
+            activeBtn.classList.add('bg-white', 'text-black');
+
+            // 5. Atualiza o texto pequeno no topo da página
+            const headerTitle = document.getElementById('header-title');
+            if(tabName === 'tab-home') headerTitle.innerText = 'System // Overview';
+            if(tabName === 'tab-apps') headerTitle.innerText = 'System // Meus Apps';
+            if(tabName === 'tab-bot') headerTitle.innerText = 'System // Bot Dashboard';
+        }
+    </script>
 </body>
 </html>
