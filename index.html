@@ -3,223 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMZ Studios | System</title>
+    <title>AMZ STUDIOS | Automação e Software</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
-        body { font-family: 'Space Grotesk', sans-serif; background-color: #000000; color: #ffffff; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-        
-        /* Estilo B&W minimalista */
-        .bw-border { border: 1px solid #262626; transition: all 0.3s ease; }
-        .bw-border:hover { border-color: #ffffff; }
-        
-        /* Scrollbar B&W */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #fff; }
-
-        /* Esconder abas inativas */
-        .hidden { display: none !important; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; scroll-behavior: smooth; }
+        .section-visible { display: block !important; }
+        .tab-content { display: none; }
+        .nav-link:hover { text-decoration: line-through; }
+        .bw-gradient { background: linear-gradient(180deg, #111 0%, #000 100%); }
     </style>
 </head>
-<body class="flex h-screen overflow-hidden">
+<body>
 
-    <aside class="w-64 bg-[#050505] border-r border-[#262626] flex flex-col justify-between hidden md:flex z-10">
-        <div>
-            <div class="h-16 flex items-center px-6 border-b border-[#262626]">
-                <div class="w-8 h-8 bg-white text-black flex items-center justify-center font-bold text-lg mr-3">A</div>
-                <span class="font-bold tracking-widest uppercase text-sm">Amz Studios</span>
-            </div>
-
-            <nav class="p-4 space-y-2 mt-4">
-                <p class="px-3 text-[10px] font-mono text-neutral-500 mb-2 uppercase tracking-[0.2em]">Navegação</p>
-                
-                <button id="btn-tab-home" onclick="openTab('tab-home')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 bg-white text-black font-semibold rounded-sm transition">
-                    <i class="ph ph-squares-four text-xl"></i>
-                    <span class="text-sm uppercase tracking-wider">Início</span>
-                </button>
-                
-                <button id="btn-tab-apps" onclick="openTab('tab-apps')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 text-neutral-400 hover:bg-[#111] hover:text-white rounded-sm transition font-semibold">
-                    <i class="ph ph-download-simple text-xl"></i>
-                    <span class="text-sm uppercase tracking-wider">Meus Apps</span>
-                </button>
-
-                <button id="btn-tab-bot" onclick="openTab('tab-bot')" class="nav-btn w-full flex items-center gap-3 px-4 py-3 text-neutral-400 hover:bg-[#111] hover:text-white rounded-sm transition font-semibold">
-                    <i class="ph ph-robot text-xl"></i>
-                    <span class="text-sm uppercase tracking-wider">Bot Dashboard</span>
-                </button>
-            </nav>
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-7 h-7 bg-white text-black flex items-center justify-center font-black">A</div>
+            <span class="font-bold tracking-tighter text-xl uppercase">AMZ STUDIOS</span>
         </div>
+        <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em]">
+            <button onclick="showTab('home')" class="nav-link">Início</button>
+            <button onclick="showTab('apps')" class="nav-link">Aplicativos</button>
+            <button onclick="showTab('bot')" class="nav-link">Dashboard Bot</button>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="https://github.com/Muniz-Amz" target="_blank"><i class="ph ph-github-logo text-2xl"></i></a>
+        </div>
+    </nav>
 
-        <div class="p-4 border-t border-[#262626]">
-            <div class="flex items-center gap-3 px-3 py-2">
-                <img src="https://github.com/Muniz-Amz.png" alt="Muniz" class="w-10 h-10 rounded-sm bw-border grayscale">
+    <div id="home" class="tab-content section-visible pt-32">
+        <section class="max-w-5xl mx-auto px-6 text-center">
+            <span class="text-[10px] border border-white/20 px-3 py-1 rounded-full uppercase tracking-[0.3em] text-neutral-500">Desenvolvimento Independente</span>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter mt-8 mb-6">SOLUÇÕES EM <br> CÓDIGO PURO.</h1>
+            <p class="text-neutral-400 max-w-2xl mx-auto leading-relaxed text-lg">
+                Bem-vindo à <strong>AMZ Studios</strong>. Aqui eu centralizo minhas criações de software, 
+                desde macros de alta precisão para jogos até sistemas complexos de automação para Discord e Web.
+            </p>
+            <div class="mt-10 flex flex-wrap justify-center gap-4">
+                <button onclick="showTab('apps')" class="bg-white text-black px-8 py-4 font-bold uppercase text-xs hover:bg-neutral-200 transition">Explorar Aplicativos</button>
+                <button onclick="showTab('bot')" class="border border-white/20 px-8 py-4 font-bold uppercase text-xs hover:bg-white/10 transition">Gerenciar Meu Bot</button>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto px-6 py-32 grid md:grid-cols-3 gap-12 border-t border-white/5 mt-20">
+            <div>
+                <h3 class="text-white font-bold mb-4 uppercase tracking-widest text-sm underline decoration-white/20">01. Automação</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed">Desenvolvimento de scripts Python e Macros voltados para produtividade e desempenho em tarefas repetitivas.</p>
+            </div>
+            <div>
+                <h3 class="text-white font-bold mb-4 uppercase tracking-widest text-sm underline decoration-white/20">02. Discord Bots</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed">Criação de robôs inteligentes com integrações via Flask, garantindo que seu servidor funcione 24/7.</p>
+            </div>
+            <div>
+                <h3 class="text-white font-bold mb-4 uppercase tracking-widest text-sm underline decoration-white/20">03. Ferramentas</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed">Softwares utilitários executáveis prontos para uso, focados em simplicidade e funcionalidade.</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="apps" class="tab-content pt-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl font-black uppercase mb-2">Repositório de Software</h2>
+            <p class="text-neutral-500 mb-12 uppercase text-[10px] tracking-[0.2em]">Clique para baixar e utilizar</p>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="border border-white/10 p-8 hover:bg-white hover:text-black transition-all group relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-12">
+                        <i class="ph ph-cpu text-4xl"></i>
+                        <span class="font-mono text-[10px] border border-current px-2 py-1">EXE</span>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase mb-2">Amz Clicker</h3>
+                    <p class="text-neutral-500 group-hover:text-black/60 text-sm mb-8">Macro otimizado para Roblox. Estabilidade garantida para farm contínuo.</p>
+                    <a href="./meu-site-downloads/Amz Clicker.exe" download class="inline-block border-b-2 border-current font-bold py-1 text-xs uppercase tracking-widest">Download direto</a>
+                </div>
+
+                <div class="border border-white/5 p-8 opacity-40 grayscale flex items-center justify-center border-dashed">
+                    <p class="font-mono text-[10px] uppercase tracking-widest">Novo App em Desenvolvimento...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bot" class="tab-content pt-32 px-6">
+        <div class="max-w-5xl mx-auto bw-gradient border border-white/10 p-10 rounded-sm">
+            <div class="flex justify-between items-center mb-10 border-b border-white/10 pb-6">
                 <div>
-                    <p class="text-sm font-bold uppercase">Muniz-Amz</p>
-                    <p class="text-xs font-mono text-neutral-500 flex items-center gap-2 mt-1">
-                        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> Root
-                    </p>
+                    <h2 class="text-2xl font-black uppercase tracking-tighter">Terminal de Controle</h2>
+                    <p class="text-neutral-500 text-xs font-mono uppercase mt-1">Status: Conectado como Muniz-Amz</p>
                 </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-white animate-pulse"></span>
+                    <span class="font-mono text-[10px]">OPERATIONAL</span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-black border border-white/10 p-6">
+                    <p class="text-[10px] text-neutral-500 uppercase tracking-widest mb-2">Servidores Ativos</p>
+                    <p class="text-4xl font-light">14</p>
+                </div>
+                <div class="bg-black border border-white/10 p-6">
+                    <p class="text-[10px] text-neutral-500 uppercase tracking-widest mb-2">Ping Sistema</p>
+                    <p class="text-4xl font-light">38ms</p>
+                </div>
+                <div class="bg-black border border-white/10 p-6">
+                    <p class="text-[10px] text-neutral-500 uppercase tracking-widest mb-2">Latência Bot</p>
+                    <p class="text-4xl font-light">0.02s</p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-black border border-white/10 p-4 font-mono text-[10px] text-neutral-500 leading-relaxed">
+                <p>> Verificando conexão com Render.com... [OK]</p>
+                <p>> Carregando módulos de automação... [OK]</p>
+                <p class="text-white">> Painel de controle AMZ pronto para comandos.</p>
             </div>
         </div>
-    </aside>
+    </div>
 
-    <main class="flex-1 flex flex-col h-screen overflow-y-auto bg-[#000000]">
-        
-        <header class="h-16 border-b border-[#262626] flex items-center justify-between px-8 bg-[#000000]/90 backdrop-blur-md sticky top-0 z-10">
-            <h1 class="text-sm font-mono text-neutral-400 tracking-widest uppercase" id="header-title">System // Overview</h1>
-            <a href="https://github.com/Muniz-Amz" target="_blank" class="text-neutral-400 hover:text-white transition">
-                <i class="ph ph-github-logo text-2xl"></i>
-            </a>
-        </header>
-
-        <div class="p-8 max-w-6xl mx-auto w-full">
-
-            <div id="tab-home" class="tab-content">
-                <h2 class="text-4xl font-bold mb-2 uppercase tracking-tighter">Workspace.</h2>
-                <p class="text-neutral-500 mb-10 text-sm tracking-wide">Seu hub central de automação e gerenciamento.</p>
-
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bw-border p-8 rounded-sm bg-[#050505]">
-                        <i class="ph ph-terminal-window text-4xl mb-4 text-white"></i>
-                        <h3 class="text-xl font-bold mb-2 uppercase">Status do Sistema</h3>
-                        <p class="text-neutral-400 text-sm mb-6">Todos os serviços estão operacionais. O servidor web e o banco de dados estão sincronizados.</p>
-                        <div class="font-mono text-xs text-neutral-500 space-y-2 bg-black p-4 border border-[#262626]">
-                            <p>> git status: up to date</p>
-                            <p>> build: passing</p>
-                            <p class="text-white">> connection: secure</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tab-apps" class="tab-content hidden">
-                <h2 class="text-4xl font-bold mb-2 uppercase tracking-tighter">Meus Apps.</h2>
-                <p class="text-neutral-500 mb-10 text-sm tracking-wide">Ferramentas e executáveis desenvolvidos pela AMZ Studios.</p>
-
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bw-border p-6 rounded-sm bg-[#050505] flex flex-col h-full group">
-                        <div class="w-12 h-12 bg-white text-black flex items-center justify-center rounded-sm mb-6">
-                            <i class="ph ph-mouse-left text-2xl"></i>
-                        </div>
-                        <h3 class="text-lg font-bold mb-1 uppercase">Amz Clicker</h3>
-                        <p class="text-neutral-500 text-sm mb-2 font-mono">v1.0 - Executável Windows</p>
-                        <p class="text-neutral-400 text-sm mb-8 flex-1">Macro de alta precisão focado em otimização de farm para Roblox.</p>
-                        
-                        <a href="./meu-site-downloads/Amz Clicker.exe" download class="w-full bg-transparent border border-[#262626] group-hover:bg-white group-hover:text-black text-white py-3 font-bold text-xs uppercase tracking-[0.2em] transition text-center flex items-center justify-center gap-2">
-                            <i class="ph ph-download-simple text-lg"></i> Download
-                        </a>
-                    </div>
-
-                    <div class="bw-border border-dashed p-6 rounded-sm bg-transparent flex flex-col items-center justify-center text-center h-full opacity-50 cursor-not-allowed">
-                        <i class="ph ph-code text-3xl mb-4 text-neutral-600"></i>
-                        <h3 class="text-sm font-bold uppercase text-neutral-500">Ferramentas Py</h3>
-                        <p class="text-neutral-600 text-xs mt-2 uppercase tracking-widest">Em Breve</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tab-bot" class="tab-content hidden">
-                <div class="flex justify-between items-end mb-10">
-                    <div>
-                        <h2 class="text-4xl font-bold mb-2 uppercase tracking-tighter">Bot Dashboard.</h2>
-                        <p class="text-neutral-500 text-sm tracking-wide">Painel de controle do seu Bot do Discord via Render.</p>
-                    </div>
-                    <div class="font-mono text-xs border border-[#262626] px-4 py-2 bg-[#050505] flex items-center gap-2">
-                        <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> ONLINE
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-3 gap-4 mb-8">
-                    <div class="bw-border p-6 bg-[#050505]">
-                        <p class="text-neutral-500 font-mono text-[10px] uppercase tracking-widest mb-1">Servidores</p>
-                        <p class="text-3xl font-bold">14</p>
-                    </div>
-                    <div class="bw-border p-6 bg-[#050505]">
-                        <p class="text-neutral-500 font-mono text-[10px] uppercase tracking-widest mb-1">Ping</p>
-                        <p class="text-3xl font-bold">42<span class="text-sm text-neutral-500 ml-1">ms</span></p>
-                    </div>
-                    <div class="bw-border p-6 bg-[#050505]">
-                        <p class="text-neutral-500 font-mono text-[10px] uppercase tracking-widest mb-1">Uptime</p>
-                        <p class="text-3xl font-bold">99.8<span class="text-sm text-neutral-500 ml-1">%</span></p>
-                    </div>
-                </div>
-
-                <div class="bw-border bg-[#050505] p-8">
-                    <h3 class="text-lg font-bold mb-6 uppercase border-b border-[#262626] pb-4">Módulos Ativos</h3>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="font-bold text-sm uppercase">Sistema de Moderação</p>
-                                <p class="text-neutral-500 text-xs mt-1">Kick, Ban e avisos automáticos ligados.</p>
-                            </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer" checked>
-                                <div class="w-11 h-6 bg-[#262626] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-400 peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-white"></div>
-                            </label>
-                        </div>
-
-                        <div class="flex items-center justify-between border-t border-[#111] pt-6">
-                            <div>
-                                <p class="font-bold text-sm uppercase">Auto-Role (Cargos Automáticos)</p>
-                                <p class="text-neutral-500 text-xs mt-1">Atribui cargos assim que o usuário entra no servidor.</p>
-                            </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer" checked>
-                                <div class="w-11 h-6 bg-[#262626] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-400 peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-white"></div>
-                            </label>
-                        </div>
-
-                        <div class="flex items-center justify-between border-t border-[#111] pt-6">
-                            <div>
-                                <p class="font-bold text-sm uppercase">Logs de Mensagens</p>
-                                <p class="text-neutral-500 text-xs mt-1">Registra mensagens apagadas e editadas.</p>
-                            </div>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer">
-                                <div class="w-11 h-6 bg-[#262626] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-400 peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-white"></div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </main>
+    <footer class="py-20 text-center text-neutral-600 text-[9px] uppercase tracking-[0.5em]">
+        &copy; 2026 AMZ Studios. Desenvolvido por Muniz-Amz.
+    </footer>
 
     <script>
-        function openTab(tabName) {
-            // 1. Esconde todo o conteúdo de todas as abas
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => {
-                content.classList.add('hidden');
+        function showTab(id) {
+            // Esconde todas
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
             });
-
-            // 2. Mostra a aba que foi clicada
-            document.getElementById(tabName).classList.remove('hidden');
-
-            // 3. Reseta o estilo de todos os botões no menu (deixa cinza)
-            const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-white', 'text-black');
-                btn.classList.add('text-neutral-400', 'hover:bg-[#111]', 'hover:text-white');
-            });
-
-            // 4. Destaca o botão que foi clicado (deixa branco com texto preto)
-            const activeBtn = document.getElementById('btn-' + tabName);
-            activeBtn.classList.remove('text-neutral-400', 'hover:bg-[#111]', 'hover:text-white');
-            activeBtn.classList.add('bg-white', 'text-black');
-
-            // 5. Atualiza o texto pequeno no topo da página
-            const headerTitle = document.getElementById('header-title');
-            if(tabName === 'tab-home') headerTitle.innerText = 'System // Overview';
-            if(tabName === 'tab-apps') headerTitle.innerText = 'System // Meus Apps';
-            if(tabName === 'tab-bot') headerTitle.innerText = 'System // Bot Dashboard';
+            // Mostra a selecionada
+            document.getElementById(id).style.display = 'block';
+            // Volta para o topo
+            window.scrollTo(0, 0);
         }
     </script>
 </body>
