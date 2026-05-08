@@ -115,32 +115,12 @@
             <div id="lista-servidores" class="hidden fade-in">
                 <h2 class="text-blue-500 text-3xl font-black uppercase tracking-tighter mb-2">Escolha um Servidor</h2>
                 <div class="border-b border-white/10 mb-8 pb-4">
-                    <p class="text-white font-bold text-sm">Seus Servidores</p>
-                    <p class="text-neutral-500 text-[10px] uppercase tracking-widest">Painel Administrativo</p>
+                    <p class="text-white font-bold text-sm">Seus Servidores Ativos</p>
+                    <p class="text-neutral-500 text-[10px] uppercase tracking-widest">Sincronizado via MongoDB</p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="server-card" data-id="COLOQUE_O_ID_AQUI">
-                        <div class="flex items-center gap-4 mb-4">
-                            <img src="./assets/logo.png" alt="Icone Servidor" class="server-icon bg-neutral-900 p-2">
-                            <div>
-                                <h4 class="text-white font-bold text-sm">Anotação Rayo</h4>
-                                <p class="text-neutral-500 text-[10px] uppercase">Dono</p>
-                            </div>
-                        </div>
-                        <button class="btn-config bg-neutral-800 text-white w-full py-2 rounded font-bold transition">Carregando...</button>
-                    </div>
-
-                    <div class="server-card" data-id="COLOQUE_O_ID_AQUI">
-                        <div class="flex items-center gap-4 mb-4">
-                            <img src="./assets/logo.png" alt="Icone Servidor" class="server-icon bg-neutral-900 p-2">
-                            <div>
-                                <h4 class="text-white font-bold text-sm">Society</h4>
-                                <p class="text-neutral-500 text-[10px] uppercase">Dono</p>
-                            </div>
-                        </div>
-                        <button class="btn-config bg-neutral-800 text-white w-full py-2 rounded font-bold transition">Carregando...</button>
-                    </div>
+                <div id="container-servidores" class="grid md:grid-cols-2 gap-4">
+                    <p class="text-white/50 col-span-2 text-center animate-pulse py-10">Buscando servidores no banco de dados...</p>
                 </div>
             </div>
 
