@@ -42,17 +42,29 @@ async function abrirListaServidores() {
     try {
         // 1. Busca a lista de servidores ativos no seu Bot
         const response = await fetch(`${URL_BASE_BOT}/api/bot-servidores`);
+        
+        // Proteção: Verifica se a requisição foi bem sucedida
+        if (!response.ok) {
+            throw new Error(`Erro na API: ${response.status}`);
+        }
+
         const servidores = await response.json();
 
         container.innerHTML = ""; // Limpa a mensagem de carregamento
 
-        if (!servidores || servidores.length === 0) {
-            container.innerHTML = '<p class="text-white/50 col-span-2 text-center py-10">Nenhum servidor ativo encontrado. Adicione o bot primeiro!</p>';
+        // Proteção: Verifica se o que voltou é realmente uma lista/array
+        if (!Array.isArray(servidores) || servidores.length === 0) {
+            container.innerHTML = '<p class="text-white/50 col-span-2 text-center py-10 uppercase text-[10px] tracking-widest">Nenhum servidor ativo encontrado. <br> Adicione o bot ao seu servidor primeiro!</p>';
             return;
         }
 
         // 2. Cria os cards dinamicamente para cada servidor que vier do banco
         servidores.forEach(srv => {
+            // Nota: O bot atualizado envia apenas uma lista de strings (IDs) ou objetos. 
+            // Esta lógica funciona para ambos os casos.
+            const guildId = typeof srv === 'string' ? srv : srv.guild_id;
+            const guildNome = srv.nome || "Servidor Discord";
+
             const card = document.createElement('div');
             card.className = "server-card p-6 bg-[#111] border border-white/5 rounded-xl flex items-center justify-between hover:border-white/20 transition-all";
             
@@ -60,11 +72,11 @@ async function abrirListaServidores() {
                 <div class="flex items-center gap-4">
                     <img src="./assets/logo.png" alt="Icon" class="w-12 h-12 grayscale p-2 bg-black rounded-lg">
                     <div>
-                        <h4 class="text-white font-bold text-sm">${srv.nome || "Servidor AMZ"}</h4>
-                        <p class="text-neutral-500 text-[10px] uppercase tracking-widest">ID: ${srv.guild_id}</p>
+                        <h4 class="text-white font-bold text-sm">${guildNome}</h4>
+                        <p class="text-neutral-500 text-[10px] uppercase tracking-widest">ID: ${guildId}</p>
                     </div>
                 </div>
-                <button onclick="abrirConfigLimpeza('${srv.guild_id}', '${srv.nome}')" 
+                <button onclick="abrirConfigLimpeza('${guildId}', '${guildNome}')" 
                         class="bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-bold py-2 px-6 rounded uppercase transition shadow-lg shadow-blue-900/20">
                     Configurar
                 </button>
@@ -73,8 +85,8 @@ async function abrirListaServidores() {
         });
 
     } catch (error) {
-        console.error("Erro:", error);
-        container.innerHTML = '<p class="text-red-400 col-span-2 text-center py-10 uppercase text-[10px]">Erro de conexão com a API do Render.</p>';
+        console.error("Erro detalhado:", error);
+        container.innerHTML = '<p class="text-red-400 col-span-2 text-center py-10 uppercase text-[10px] font-bold">Erro de conexão com a API do Render. <br> Verifique se o bot está online.</p>';
     }
 }
 
